@@ -733,7 +733,7 @@ func TestNewHTTPClientRetryOnHTTPErrors(t *testing.T) {
 
 	client.RetryConfig.ExpBackoffFactor = 0
 	client.SuccessFn = acceptAll
-	for _, status = range []int{http.StatusServiceUnavailable} {
+	for _, status = range []int{http.StatusServiceUnavailable, http.StatusBadGateway} {
 		requests = 0
 		req := &Request{Method: http.MethodGet, URL: server.URL}
 		resp, err := client.Do(context.Background(), req)
